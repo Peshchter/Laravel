@@ -90,6 +90,24 @@
     <main class="py-4">
         @yield('content')
     </main>
+    <footer class="footer navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+                    <li>
+                        Скопипасчено с базового шаблона в {{ date('Y') }} году
+                    </li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto ">
+                    <li>Контакты для связи:</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
 </div>
 </body>
 </html>
