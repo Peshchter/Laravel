@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     <h1>{{$model['title']}}</h1>
     <h2>Список новостей</h2>

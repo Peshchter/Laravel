@@ -1,4 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
-    Главная страница.
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                Главная страница.
+            </div>
+        </div>
+    </div>
+
 @endsection

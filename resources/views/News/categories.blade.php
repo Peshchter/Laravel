@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     <h1>Список Разделов</h1>
     <div class="links" style="display: flex; flex-direction: column;">

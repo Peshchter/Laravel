@@ -12,3 +12,9 @@ npm-debug.log
 yarn-error.log
 _ide_helper.php
 ./.idea
+
+.idea/
+
+public/css/
+
+public/js/
