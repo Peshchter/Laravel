@@ -11,8 +11,12 @@ class NewsController extends BaseController
 {
     public function index()
     {
-
         return view('news.news', ['model' => News::$array]);
+    }
+
+    public function add()
+    {
+        return view('news.add');
     }
 
     public function getNewsById($id = 0)

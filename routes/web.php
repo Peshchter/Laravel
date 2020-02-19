@@ -20,6 +20,7 @@ Route::group(
     "as" => "news."
 ], function (){
     Route::get("/", 'NewsController@index')->name('index');
+    Route::get("/add", 'NewsController@add')->name('add');
     Route::get("/{id}", 'NewsController@getNewsById')->where('id', '[0-9]+')->name('byId');
     Route::group(
         [
