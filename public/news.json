@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "category_id": 1,
+        "title": "Lorem ipsum dolor sit amet",
+        "text": "consectetur adipisicing elit. Assumenda autem corporis dolor eos est labore molestiaen    nisi odio odit omnis porro, praesentium quas quia repudiandae saepe sequi, temporibus veritatis voluptates."
+    },
+    {
+        "id": 2,
+        "category_id": 1,
+        "title": "Asperiores aut beatae",
+        "text": "dolor impedit itaque magnam necessitatibus, nisi nulla officiis quas quidem repellendusn    sapiente ullam. Ad blanditiis delectus doloremque earum laudantium minus odit, officia, quia reprehenderit sitn    temporibus veritatis?"
+    },
+    {
+        "id": 3,
+        "category_id": 2,
+        "title": "Ad amet at aut blanditiis",
+        "text": "consequatur eius, eveniet explicabo facere, impedit ipsum iure laboriosam laudantium modin    mollitia officiis pariatur possimus quas quibusdam quidem repellendus rerum sint velit voluptates. Magnam, qui."
+    },
+    {
+        "id": 4,
+        "category_id": 2,
+        "title": "Ad aliquam deserunt laudantium",
+        "text": "rem vel voluptas! Accusantium cupiditate eos exercitationem ipsam magnam numquamn    odit ratione tenetur ut? Accusamus commodi dolorem dolores et eum fugit harum nobis quaerat, recusandae tempore?"
+    },
+    {
+        "id": 7,
+        "category_id": 1,
+        "title": "Ab aspernatur dolor doloremque eos facere",
+        "text": "fugiat harum non quae recusandae tempora. Assumenda at corporis cumn    cumque error esse explicabo fugiat laudantium maxime nam nesciunt repellendus repudiandae similique, solutan    suscipit."
+    },
+    {
+        "category_id": "1",
+        "title": "hj hj l lt",
+        "text": "i ltktkn758i8i87ih87i",
+        "id": 8
+    },
+    {
+        "category_id": "1",
+        "title": "ssdfbsnb",
+        "text": "sdbdbsxfdb",
+        "id": 9
+    },
+    {
+        "category_id": "1",
+        "title": "ryi58oih678ji",
+        "text": "234r2tdx2354y",
+        "id": 10
+    }
+]
