@@ -21,6 +21,8 @@ Route::group(
 ], function (){
     Route::get("/", 'NewsController@index')->name('index');
     Route::get("/add", 'NewsController@add')->name('add');
+    Route::post("/add", 'NewsController@save')->name('save');
+    Route::get("/get", 'NewsController@get')->name('get');
     Route::get("/{id}", 'NewsController@getNewsById')->where('id', '[0-9]+')->name('byId');
     Route::group(
         [
