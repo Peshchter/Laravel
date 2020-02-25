@@ -5,14 +5,14 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h1>{{$model['title']}}</h1>
+                        <h1>{{ $model->title }}</h1>
                     </div>
 
                     <div class="card-body">
                         <h3>Список новостей</h3>
                         <div class="links" style="display: flex; flex-direction: column;">
                             @foreach($list as $item)
-                                <a href="{{route('news.byId', $item['id'] )}}">{{$item['title']}}</a>
+                                <a href="{{ route('news.byId', $item->id ) }}">{{ $item->title }}</a>
                             @endforeach
                         </div>
                     </div>

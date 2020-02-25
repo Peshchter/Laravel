@@ -44,7 +44,7 @@
                                             name="cat" required autocomplete="category">
                                         @foreach($category_list as $c)
                                             <option
-                                                value="{{$c['id']}}">{{$c['title']}}</option>
+                                                value="{{ $c->id }}">{{ $c->title }}</option>
                                         @endforeach
                                     </select>
                                     @error('cat')

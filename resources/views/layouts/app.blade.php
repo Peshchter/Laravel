@@ -86,13 +86,13 @@
             </div>
         </div>
     </nav>
-
+<div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 60px);">
     <main class="py-4">
         @yield('content')
     </main>
-    <footer class="footer navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <footer class="footer navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li>
@@ -107,7 +107,7 @@
             </div>
         </div>
     </footer>
-
+</div>
 </div>
 </body>
 </html>

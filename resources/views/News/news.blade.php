@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <div class="links" style="display: flex; flex-direction: column;">
                             @foreach($model as $item)
-                                <a href="{{route('news.byId', $item['id'] )}}">{{$item['title']}}</a>
+                                <a href="{{ route('news.byId', $item->id) }}">{{ $item->title }}</a>
                             @endforeach
                         </div>
                     </div>

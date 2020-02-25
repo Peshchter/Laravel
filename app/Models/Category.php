@@ -2,19 +2,29 @@
 
 
 namespace App\Models;
+use Illuminate\Support\Facades\DB;
 
 
 class Category extends BaseModel
 {
-    public static $array = [
-        [
-            'id' => 1,
-            'title' => 'First category'
-        ],
-        [
-            'id' => 2,
-            'title' => 'Second category'
-        ],
+    private static $tablename = 'categories';
 
-    ];
+    public static $array = [];
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getAll()
+    {
+        return DB::table(self::$tablename)->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getById(int $id)
+    {
+        return DB::table(self::$tablename)->find($id);
+    }
+
 }
