@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -11,7 +12,7 @@
                     <div class="card-body">
                         <div class="links" style="display: flex; flex-direction: column;">
                             @foreach($model as $item)
-                                <a href="{{route('news.categories.byId', $item['id'] )}}">{{$item['title']}}</a>
+                                <a href="{{route('news.categories.byId', $item->id )}}">{{$item->title}}</a>
                             @endforeach
                         </div>
                     </div>

@@ -12,27 +12,18 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('news.categories', ['model' => Category::$array]);
+        return view('news.categories', ['model' => Category::getAll()]);
     }
 
-    public function getCategoryById($id = 0)
+    public function getCategoryById(int $id)
     {
-        foreach (Category::$array as $item){
-            if ($item['id'] == $id) {
-                $model = $item;
-            }
-        }
-        $list = [];
+        $model = Category::getById($id);
         if (!empty($model)){
-            foreach (News::$array as $item){
-                if ($item['category_id'] == $model['id']){
-                    $list[] = $item;
-                }
-            }
+            $list = News::getByCategoryId($model->id);
             return view('news.categoryOne', ['model' =>$model, 'list'=>$list]);
         }
         else {
-            return view('404');
+            return abort(404);
         }
     }
 }

@@ -5,16 +5,16 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h1>{{$model['title']}}</h1>
+                        <h1>{{ $model->title }}</h1>
                     </div>
 
                     <div class="card-header">
                         <h3>Категория:
-                            <a href="{{route('news.categories.byId', $category['id'])}}">{{$category['title']}}</a>
+                            <a href="{{ route('news.categories.byId', $category->id) }}">{{ $category->title }}</a>
                         </h3>
                     </div>
                     <div class="card-body">
-                        <p>{{$model['text']}} </p>
+                        <p>{{ $model->text }} </p>
                     </div>
                 </div>
             </div>

@@ -3,37 +3,55 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
+
 
 class News extends BaseModel
 {
-    private static $filename = 'news.json';
+    public $category_id;
+    public $title;
+    public $text;
 
-    public static $array = [];
+    private static $tablename = 'news';
 
-    public function __construct()
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getAll()
     {
-        if (file_exists(self::$filename)) {
-            self::fileget();
-        }
+        return DB::table(self::$tablename)->get();
     }
 
-    public static function filesave()
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getById(int $id)
     {
-        file_put_contents(self::$filename, stripslashes(json_encode(self::$array, JSON_PRETTY_PRINT)));
+        return DB::table(self::$tablename)->find($id);
     }
 
-    public static function fileget()
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getByCategoryId(int $id)
     {
-        self::$array = json_decode(file_get_contents(self::$filename), true);
-
+        return DB::table(self::$tablename)->where('category_id', $id)->get();
     }
 
-    public static function init()
+    /***
+     * @param News $news
+     * @return void
+     */
+    public static function saveToDB(News $news)
     {
-        if (file_exists(self::$filename)) {
-            self::fileget();
-        }
+        //dd(compact('news'));
+        DB::table(self::$tablename)
+            ->insert([
+                'category_id' => $news->category_id,
+                'title' => $news->title,
+                'text' => $news->text
+            ]);
     }
+
+
 }
-
-News::init();
