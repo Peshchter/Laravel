@@ -33,12 +33,8 @@ class NewsController extends BaseController
 
     public function save(Request $request)
     {
-        $data = $request->input();
         $item = new News();
-        $item->category_id  = $data['category_id'] ;
-        $item->title  = $data['title'] ;
-        $item->text  = $data['text'] ;
-
+        $item->fill($request->all());
         $item->save();
         return redirect(route('news.add'))
             ->with('result', 'success');

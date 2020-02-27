@@ -29,22 +29,4 @@ class News extends BaseModel
     {
         return $this->belongsTo(Category::class, 'category_id')->firstOrFail();
     }
-
-    /***
-     * @param News $news
-     * @return void
-     */
-    public static function saveToDB(Request $request, News $news)
-    {
-        //dd(compact('news'));
-        $model = new News();
-        //$model->fill($request->);
-
-        DB::table(self::$tablename)
-            ->insert([
-                'category_id' => $news->category_id,
-                'title' => $news->title,
-                'text' => $news->text
-            ]);
-    }
 }

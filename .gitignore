@@ -17,4 +17,4 @@ public/css/
 public/js/
 
 package-lock.json
-/public/fonts/vendor/font-awesome/
+/public/fonts/vendor/@fortawesome/
