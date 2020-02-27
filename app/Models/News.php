@@ -4,54 +4,29 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 
 class News extends BaseModel
 {
-    public $category_id;
-    public $title;
-    public $text;
-
-    private static $tablename = 'news';
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getAll()
-    {
-        return DB::table(self::$tablename)->get();
-    }
+    protected $table = 'news';
+    protected $fillable = [
+      'title', 'category_id', 'text'
+    ];
 
     /**
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getById(int $id)
-    {
-        return DB::table(self::$tablename)->find($id);
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public static function getByCategoryId(int $id)
     {
-        return DB::table(self::$tablename)->where('category_id', $id)->get();
+        return News::query()->where('category_id', $id)->paginate(15);
     }
 
-    /***
-     * @param News $news
-     * @return void
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public static function saveToDB(News $news)
+    public function getCategory()
     {
-        //dd(compact('news'));
-        DB::table(self::$tablename)
-            ->insert([
-                'category_id' => $news->category_id,
-                'title' => $news->title,
-                'text' => $news->text
-            ]);
+        return $this->belongsTo(Category::class, 'category_id')->firstOrFail();
     }
-
-
 }

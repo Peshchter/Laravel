@@ -17,16 +17,20 @@
                     <div class="card-header">Добавить запись</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('news.add') }}">
+                        <form method="POST"
+                              @if (isset($item->id)) action="{{ route('news.update', $item) }}"
+                              @else                  action="{{ route('news.add')    }}"
+                            @endif>
                             @csrf
-
+                            @if(isset($item->id)) @method('PUT') @endif
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Название</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                           class="form-control @error('name') is-invalid @enderror" name="name"
-                                           value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                           class="form-control @error('name') is-invalid @enderror" name="title"
+                                           value="{{ $item->title ?? old('name') }}" required autocomplete="name"
+                                           autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -41,10 +45,11 @@
 
                                 <div class="col-md-6">
                                     <select id="cat" type="text" class="form-control @error('cat') is-invalid @enderror"
-                                            name="cat" required autocomplete="category">
+                                            name="category_id" required autocomplete="category">
                                         @foreach($category_list as $c)
-                                            <option
-                                                value="{{ $c->id }}">{{ $c->title }}</option>
+                                            <option value="{{ $c->id }}" @if ($c->id == $item->category_id) selected @endif>
+                                                {{ $c->title }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('cat')
@@ -59,9 +64,8 @@
                                 <label for="text" class="col-md-4 col-form-label text-md-right">Текст</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="text" class="form-control " name="text" value="{{ old('cat') }}"
-                                              required autocomplete="text">
-                                    </textarea>
+                                    <textarea id="text" class="form-control " name="text"
+                                              required autocomplete="text">{{ $item->text ?? old('text') }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group row ">

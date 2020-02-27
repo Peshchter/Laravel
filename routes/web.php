@@ -12,14 +12,14 @@
 */
 
 Route::get('/', function () { return view('welcome');})->name('home');
-
+Route::resource('news', 'News\NewsController')->only(['edit', 'destroy', 'update', 'index']);
 Route::group(
 [
     "prefix" => "news",
     "namespace" => "News",
     "as" => "news."
 ], function (){
-    Route::get("/", 'NewsController@index')->name('index');
+    //Route::get("/", 'NewsController@index')->name('index');
     Route::get("/add", 'NewsController@add')->name('add');
     Route::post("/add", 'NewsController@save')->name('save');
     Route::get("/get", 'NewsController@get')->name('get');

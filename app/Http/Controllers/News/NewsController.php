@@ -11,13 +11,13 @@ class NewsController extends BaseController
 {
     public function index()
     {
-        return view('news.news', ['model' => News::getAll()]);
+        return view('news.news', ['model' => News::query()->paginate(20)]);
     }
 
     public function get()
     {
         return response()
-            ->json(News::getAll())
+            ->json(News::all())
             ->header('Content-Disposition', 'attachment; filename = "news.json"')
             ->setEncodingOptions(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
@@ -25,7 +25,7 @@ class NewsController extends BaseController
     public function add(Request $request)
     {
         $item = new News();
-        $category_list = Category::getAll();
+        $category_list = Category::all();
         $result = $request->session()->exists('result') ?? null;
         $request->session()->forget('result');
         return view('news.add', compact(['item', 'category_list', 'result']));
@@ -33,13 +33,9 @@ class NewsController extends BaseController
 
     public function save(Request $request)
     {
-        $data = $request->input();
         $item = new News();
-        $item->category_id  = $data['cat'] ;
-        $item->title  = $data['name'] ;
-        $item->text  = $data['text'] ;
-
-        News::saveToDB($item);
+        $item->fill($request->all());
+        $item->save();
         return redirect(route('news.add'))
             ->with('result', 'success');
 
@@ -51,7 +47,7 @@ class NewsController extends BaseController
      */
     public function getNewsById(int $id)
     {
-        $model = News::getById($id);
+        $model = News::findOrFail($id);
         $cat = 'Не определена';
         if (!empty($model)) {
             $cat = Category::getById($model->category_id);
@@ -59,6 +55,24 @@ class NewsController extends BaseController
         } else {
             abort(404);
         }
+    }
+
+    public function destroy(News $news){
+        $news->delete();
+        return redirect()->back();
+    }
+
+    public function edit(News $news){
+        $item = $news;
+        $category_list = Category::all();
+        $result = null;
+        return view('news.add', compact(['item', 'category_list', 'result']));
+    }
+
+    public function update(Request $request, News $news){
+        $news->fill($request->all());
+        $news->update();
+        return redirect( route('news.index'));
     }
 
 
