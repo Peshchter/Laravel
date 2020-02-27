@@ -4,27 +4,31 @@
 namespace App\Models;
 use Illuminate\Support\Facades\DB;
 
-
+/**
+ * Class Category
+ * @package App\Models
+ *
+ * @property string title
+ * @property int id
+ */
 class Category extends BaseModel
 {
-    private static $tablename = 'categories';
+    protected $table = 'categories';
 
-    public static $array = [];
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getAll()
-    {
-        return DB::table(self::$tablename)->get();
-    }
+    protected $fillable = [
+       'title'
+    ];
 
     /**
      * @return \Illuminate\Support\Collection
      */
     public static function getById(int $id)
     {
-        return DB::table(self::$tablename)->find($id);
+        return Category::findOrFail($id);
     }
 
+    public function getNews(int $id)
+    {
+        return News::query()->where('category_id', $id)->get();
+    }
 }
