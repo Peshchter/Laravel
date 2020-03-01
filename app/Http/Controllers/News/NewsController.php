@@ -26,19 +26,24 @@ class NewsController extends BaseController
     {
         $item = new News();
         $category_list = Category::all();
-        $result = $request->session()->exists('result') ?? null;
-        $request->session()->forget('result');
-        return view('news.add', compact(['item', 'category_list', 'result']));
+        return view('news.add', compact(['item', 'category_list']));
+
     }
 
     public function save(Request $request)
     {
+        $validatedData = $this->validate($request, News::rules(),[], News::attributeNames());
         $item = new News();
-        $item->fill($request->all());
-        $item->save();
-        return redirect(route('news.add'))
-            ->with('result', 'success');
-
+        $item->fill($validatedData);
+        if ($item->save()) {
+            return redirect()
+                ->route('news.index')
+                ->with('success', 'Успешно сохранено!');
+        }else{
+            return redirect()
+                ->back()
+                ->with('error', 'Ошибка добавления');
+        }
     }
 
     /**
@@ -57,23 +62,34 @@ class NewsController extends BaseController
         }
     }
 
-    public function destroy(News $news){
+    public function destroy(News $news)
+    {
         $news->delete();
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('error', 'Запись удалена!');
     }
 
-    public function edit(News $news){
+    public function edit(News $news)
+    {
         $item = $news;
         $category_list = Category::all();
-        $result = null;
-        return view('news.add', compact(['item', 'category_list', 'result']));
+        return view('news.add', compact(['item', 'category_list']));
     }
 
-    public function update(Request $request, News $news){
-        $news->fill($request->all());
-        $news->update();
-        return redirect( route('news.index'));
+    public function update(Request $request, News $news)
+    {
+        $validatedData = $this->validate($request, News::rules(),[], News::attributeNames());
+        $news->fill($validatedData);
+        if($news->update())
+        {
+            return redirect(route('news.index'))
+                ->with('success', 'Изменение произошло успешно');
+        }else {
+            return redirect()
+                ->back()
+                ->with('error', 'Ошибка сохранения');
+        }
+
     }
-
-
 }
