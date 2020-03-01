@@ -14,6 +14,30 @@ class News extends BaseModel
       'title', 'category_id', 'text'
     ];
 
+    public static function rules(){
+        $categoryTable = (new Category())->getTable();
+        return [
+            'title' => 'required | min:5 | max:30',
+            'category_id' => "exists:{$categoryTable},id",
+            'text' => 'required | min:20',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'title.required' => 'Необходимо указать заголовок',
+            'text.required'  => 'Необходимо написать статью',
+        ];
+    }
+
+    public static function attributeNames(){
+        return [
+            'title' => 'Название',
+            'text'  => 'Текст',
+            'category_id'  => 'Категория',
+        ];
+    }
+
     /**
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
