@@ -21,6 +21,8 @@ Route::group(
 ], function (){
     //Route::get("/", 'NewsController@index')->name('index');
     Route::get("/add", 'NewsController@add')->name('add');
+    Route::get("/parser", 'ParserController@index')->middleware('auth')->name('parser');
+    Route::get("/parser/save", 'ParserController@save')->middleware('auth')->name('parser.save');
     Route::post("/add", 'NewsController@save')->name('save');
     Route::get("/get", 'NewsController@get')->name('get');
     Route::get("/{id}", 'NewsController@getNewsById')->where('id', '[0-9]+')->name('byId');
@@ -42,3 +44,7 @@ Route::get('/users','UsersController@index')->middleware(['auth', 'checkAdmin'])
 Route::get('/users/{user}','UsersController@edit')->middleware(['auth'])->name('user.edit');
 Route::patch('/users/{user}','UsersController@update')->middleware(['auth'])->name('user.update');
 Route::patch('/users/{user}/toggle','UsersController@toggleAdmin')->middleware(['auth', 'checkAdmin'])->name('users.toggle');
+Route::get('/response/vk', 'Auth\SocialLoginController@responseVK')->name('response.vk');
+Route::get('/login/vk', 'Auth\SocialLoginController@loginVK')->name('login.vk');
+Route::get('/response/fb', 'Auth\SocialLoginController@responseFB')->name('response.fb');
+Route::get('/login/fb', 'Auth\SocialLoginController@loginFB')->name('login.fb');
