@@ -37,8 +37,8 @@ Route::group(
 }
 );
 
-
-
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users','UsersController@index')->middleware(['auth', 'checkAdmin'])->name('users');
+Route::get('/users/{user}','UsersController@edit')->middleware(['auth'])->name('user.edit');
+Route::patch('/users/{user}','UsersController@update')->middleware(['auth'])->name('user.update');
+Route::patch('/users/{user}/toggle','UsersController@toggleAdmin')->middleware(['auth', 'checkAdmin'])->name('users.toggle');
