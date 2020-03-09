@@ -14,6 +14,9 @@
                         <h1>Список новостей</h1>
                         <div>
 
+                            <a href="{{route('news.parser')}}">
+                                <button type="button" class="btn btn-success">Загрузить с Яндекса</button>
+                            </a>
                             <a href="{{route('news.add')}}">
                                 <button type="button" class="btn btn-secondary">Добавить</button>
                             </a>

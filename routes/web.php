@@ -21,6 +21,8 @@ Route::group(
 ], function (){
     //Route::get("/", 'NewsController@index')->name('index');
     Route::get("/add", 'NewsController@add')->name('add');
+    Route::get("/parser", 'ParserController@index')->middleware('auth')->name('parser');
+    Route::get("/parser/save", 'ParserController@save')->middleware('auth')->name('parser.save');
     Route::post("/add", 'NewsController@save')->name('save');
     Route::get("/get", 'NewsController@get')->name('get');
     Route::get("/{id}", 'NewsController@getNewsById')->where('id', '[0-9]+')->name('byId');
