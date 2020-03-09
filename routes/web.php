@@ -44,3 +44,5 @@ Route::get('/users','UsersController@index')->middleware(['auth', 'checkAdmin'])
 Route::get('/users/{user}','UsersController@edit')->middleware(['auth'])->name('user.edit');
 Route::patch('/users/{user}','UsersController@update')->middleware(['auth'])->name('user.update');
 Route::patch('/users/{user}/toggle','UsersController@toggleAdmin')->middleware(['auth', 'checkAdmin'])->name('users.toggle');
+Route::get('/response/vk', 'Auth\SocialLoginController@responseVK')->name('response.vk');
+Route::get('/login/vk', 'Auth\SocialLoginController@loginVK')->name('login.vk');
