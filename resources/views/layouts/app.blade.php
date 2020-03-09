@@ -50,6 +50,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('news.index')}}">Новости</a>
                     </li>
+                    @guest
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('users')}}">Пользователи</a>
+                    </li>
+
+                    @endguest
 
                     <!-- Authentication Links -->
                     @guest
@@ -69,6 +76,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('user.edit', Auth::user()) }}" class="dropdown-item">Профиль</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
