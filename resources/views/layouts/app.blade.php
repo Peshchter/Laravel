@@ -64,6 +64,9 @@
                             <a class="nav-link" href="{{ route('login.vk') }}">{{ __('Войти через VK') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login.fb') }}">{{ __('Войти через FB') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))

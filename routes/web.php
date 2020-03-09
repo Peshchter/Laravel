@@ -46,3 +46,5 @@ Route::patch('/users/{user}','UsersController@update')->middleware(['auth'])->na
 Route::patch('/users/{user}/toggle','UsersController@toggleAdmin')->middleware(['auth', 'checkAdmin'])->name('users.toggle');
 Route::get('/response/vk', 'Auth\SocialLoginController@responseVK')->name('response.vk');
 Route::get('/login/vk', 'Auth\SocialLoginController@loginVK')->name('login.vk');
+Route::get('/response/fb', 'Auth\SocialLoginController@responseFB')->name('response.fb');
+Route::get('/login/fb', 'Auth\SocialLoginController@loginFB')->name('login.fb');

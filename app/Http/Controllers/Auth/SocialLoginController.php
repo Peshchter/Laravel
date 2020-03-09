@@ -32,4 +32,27 @@ class SocialLoginController extends Controller
         Auth::login($userInSystem);
         return redirect()->route('home');
     }
+
+    public function loginFB()
+    {
+        session()->get('soc_token');
+        if (Auth::id())
+        {
+            return redirect()->route('home');
+        }
+        return Socialite::with('facebook')->redirect();
+    }
+
+    public function responseFB(UserRepository $repo)
+    {
+        if (Auth::id())
+        {
+            return redirect()->route('home');
+        }
+        $user = Socialite::driver('facebook')->user();
+        session(['soc_token'=>$user->token]);
+        $userInSystem = $repo->getUserBySocId($user, 'fb');
+        Auth::login($userInSystem);
+        return redirect()->route('home');
+    }
 }
